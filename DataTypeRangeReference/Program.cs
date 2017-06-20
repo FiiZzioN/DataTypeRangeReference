@@ -5,7 +5,7 @@
 // Created          : 06-18-2017
 //
 // Last Modified By : Nick
-// Last Modified On : 06-18-2017
+// Last Modified On : 06-20-2017
 //
 // License          : GNU General Public License v3.0
 // ***********************************************************************
@@ -21,32 +21,66 @@ namespace DataTypeRangeReference
             IntroduceUser();
 
             // Byte
-            ConcatenationTool.JoinByteTypes(Byte.MinValue, Byte.MaxValue);
-            ConcatenationTool.JoinByteTypes(SByte.MinValue, SByte.MaxValue);
+            JoinByteTypes(Byte.MinValue, Byte.MaxValue);
+            JoinByteTypes(SByte.MinValue, SByte.MaxValue);
 
             // Short
-            ConcatenationTool.JoinIntTypes(Int16.MinValue, Int16.MaxValue);
-            ConcatenationTool.JoinIntTypes(UInt16.MinValue, UInt16.MaxValue);
+            JoinIntTypes(Int16.MinValue, Int16.MaxValue);
+            JoinUIntTypes(UInt16.MinValue, UInt16.MaxValue);
 
             // Int
-            ConcatenationTool.JoinIntTypes(Int32.MinValue, Int32.MaxValue);
-            ConcatenationTool.JoinIntTypes(UInt32.MinValue, UInt32.MaxValue);
+            JoinIntTypes(Int32.MinValue, Int32.MaxValue);
+            JoinUIntTypes(UInt32.MinValue, UInt32.MaxValue);
 
             // Long
-            ConcatenationTool.JoinIntTypes(Int64.MinValue, Int64.MaxValue);
-            ConcatenationTool.JoinIntTypes(UInt64.MinValue, UInt64.MaxValue);
+            JoinIntTypes(Int64.MinValue, Int64.MaxValue);
+            JoinUIntTypes(UInt64.MinValue, UInt64.MaxValue);
 
             // Decimal
-            ConcatenationTool.JoinFloatingTypes(Decimal.MinValue, Decimal.MaxValue);
+            JoinFloatingTypes(Decimal.MinValue, Decimal.MaxValue);
 
             // Float
-            ConcatenationTool.JoinFloatingTypes(Single.MinValue, Single.MaxValue);
+            JoinFloatingTypes(Single.MinValue, Single.MaxValue);
 
             // Double
-            ConcatenationTool.JoinFloatingTypes(Double.MinValue, Double.MaxValue);
+            JoinFloatingTypes(Double.MinValue, Double.MaxValue);
 
             Exit();
         }
+        #region Primary Methods
+
+        private static string Min { get; } = "Min:";
+        private static string Max { get; } = "Max:";
+
+        private static void JoinByteTypes(object minValue, object maxValue)
+        {
+            Console.WriteLine($"{minValue.GetType().Name}:");
+            Console.WriteLine($"{Min,11} {minValue}");
+            Console.WriteLine($"{Max,11} {maxValue}");
+        }
+
+        private static void JoinUIntTypes(object minValue, object maxValue)
+        {
+            Console.WriteLine($"{minValue.GetType().Name}:");
+            Console.WriteLine($"{Min,11} {minValue}");
+            Console.WriteLine($"{Max,11} {maxValue:#,#}");
+        }
+
+        private static void JoinIntTypes(object minValue, object maxValue)
+        {
+            Console.WriteLine($"{minValue.GetType().Name}:");
+            Console.WriteLine($"{Min,11} {minValue:#,#}");
+            Console.WriteLine($"{Max,11} {maxValue:#,#}");
+        }
+
+        private static void JoinFloatingTypes(object minValue, object maxValue)
+        {
+            Console.WriteLine($"{minValue.GetType().Name}:");
+            Console.WriteLine($"{Min,11} {minValue:#0.0e0}");
+            Console.WriteLine($"{Max,11} {maxValue,7:#0.0e0}");
+        }
+
+        #endregion
 
         #region Helper Methods
 
@@ -64,5 +98,6 @@ namespace DataTypeRangeReference
         }
 
         #endregion
+
     }
 }
